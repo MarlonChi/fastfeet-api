@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
   "name": "Jonny Doe",
-  "documentId": "090.090.090-00",
+  "documentId": "090.090.090-01",
   "password": "12345678"
 }
 
@@ -21,3 +21,96 @@ Content-Type: application/json
   "documentId": "090.090.090-00",
   "password": "12345678"
 }
+
+###
+# @name get_one_account
+GET {{baseUrl}}/accounts/75d618d7-b2e2-453d-84bc-688e4a8ac973
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name list_accounts
+GET {{baseUrl}}/accounts
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name update_account
+PATCH {{baseUrl}}/accounts/75d618d7-b2e2-453d-84bc-688e4a8ac973
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Jonny Doe Updated",
+  "documentId": "09009009000",
+  "password": "123456"
+}
+
+###
+
+# @name list_recipients
+GET {{baseUrl}}/recipients
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name recipient
+POST {{baseUrl}}/recipients
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+	"name": "User Name Here",
+	"documentId": "555.666.777-88",
+	"address": "1047 Brea, CA 92821",
+	"phone": "(123) 548-1234",
+	"email": "emailhere@email.com"
+}
+
+###
+
+# @name update_recipient
+PATCH {{baseUrl}}/recipients/0362c26b-5047-4718-80cd-65c70d4bd45a
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+	"email": "janejanedoe@email.com"
+}
+###
+
+# @name delete_recipient
+DELETE {{baseUrl}}/recipients/c9f4cd2b-fbc1-4592-823a-711ee2068d1e
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name create_delivery
+POST {{baseUrl}}/deliveries
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "product": "Product Test",
+  "photoUrl": "https://imageUrl.com/image.png",
+  "deliverymanId": "d57eafb2-979f-4c77-ad45-c9d4ccf5d41c",
+  "recipientId": "f874c952-e176-47aa-8518-1d05bf09b21d"
+}
+
+###
+
+# @name list_deliveries
+GET {{baseUrl}}/deliveries/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name get_delivery
+GET {{baseUrl}}/deliveries/a55d6365-e11e-4c33-af0b-8c505d9bb6d5
+Content-Type: application/json
+Authorization: Bearer {{authToken}}

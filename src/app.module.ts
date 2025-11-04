@@ -1,10 +1,22 @@
 import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
 import { PrismaService } from './prisma/prisma.service';
-import { CreateAccountController } from './controllers/create-account-controller';
+import { CreateAccountController } from './controllers/create-account.controller';
 import { ConfigModule } from '@nestjs/config';
 import { envSchema } from './env';
 import { AuthModule } from './auth/auth.module';
+import { GetAccountController } from './controllers/get-account.controller';
+import { ListAccountsController } from './controllers/list-account.controller';
+import { UpdateAccountController } from './controllers/update-account.controller';
+import { ListRecipientController } from './controllers/list-recipient.controller';
+import { CreateRecipientController } from './controllers/create-recipient.controller';
+import { DeleteAccountController } from './controllers/delete-account.controller';
+import { GetRecipientController } from './controllers/get-recipient.controller';
+import { UpdateRecipientController } from './controllers/update-recipient.controller';
+import { DeleteRecipientController } from './controllers/delete-recipient.controller';
+import { GetDeliveryController } from './controllers/get-delivery.controller';
+import { ListDeliveryController } from './controllers/list-delivery.controller';
+import { CreateDeliveryController } from './controllers/create-delivery.controller';
 
 @Module({
   imports: [
@@ -15,7 +27,21 @@ import { AuthModule } from './auth/auth.module';
     }),
     AuthModule,
   ],
-  controllers: [CreateAccountController],
+  controllers: [
+    CreateAccountController,
+    GetAccountController,
+    ListAccountsController,
+    UpdateAccountController,
+    ListRecipientController,
+    CreateRecipientController,
+    DeleteAccountController,
+    GetRecipientController,
+    UpdateRecipientController,
+    DeleteRecipientController,
+    GetDeliveryController,
+    ListDeliveryController,
+    CreateDeliveryController,
+  ],
   providers: [AppService, PrismaService],
 })
 export class AppModule {}
