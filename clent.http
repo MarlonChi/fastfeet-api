@@ -114,3 +114,14 @@ Authorization: Bearer {{authToken}}
 GET {{baseUrl}}/deliveries/a55d6365-e11e-4c33-af0b-8c505d9bb6d5
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
+
+###
+
+# @name update_delivery
+PATCH {{baseUrl}}/deliveries/3acdc5f3-6755-4fcc-9cca-f23ee15878d3
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "status": "AWAITING"
+}

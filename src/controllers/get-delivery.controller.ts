@@ -3,10 +3,12 @@ import {
   ForbiddenException,
   Get,
   HttpCode,
+  NotFoundException,
   Param,
   Req,
   UseGuards,
 } from '@nestjs/common';
+import { Delivery, Recipient, User } from '@prisma/client';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -24,23 +26,36 @@ export class GetDeliveryController {
       throw new ForbiddenException('Unauthorized access.');
     }
 
-    const fetchDelivery = await this.prisma.delivery.findFirst({
-      where: {
-        id,
-      },
-    });
+    const fetchDelivery: Delivery | null =
+      await this.prisma.delivery.findUnique({
+        where: { id },
+      });
 
-    const fetchRecipientInformation = await this.prisma.recipient.findFirst({
-      where: {
-        id: fetchDelivery?.recipientId,
-      },
-    });
+    if (!fetchDelivery) {
+      throw new NotFoundException('Delivery not found.');
+    }
+
+    const fetchRecipientInformation: Recipient | null =
+      await this.prisma.recipient.findUnique({
+        where: { id: fetchDelivery.recipientId },
+      });
+
+    let fetchDeliveryManInformation: User | null = null;
+    if (fetchDelivery.deliverymanId) {
+      fetchDeliveryManInformation = await this.prisma.user.findUnique({
+        where: { id: fetchDelivery.deliverymanId },
+      });
+    }
 
     return {
-      fetchDelivery,
-      informations: {
-        fetchRecipientInformation,
-      },
+      delivery: fetchDelivery,
+      recipient: fetchRecipientInformation,
+      deliveryman: fetchDeliveryManInformation
+        ? {
+            id: fetchDeliveryManInformation.id,
+            name: fetchDeliveryManInformation.name,
+          }
+        : null,
     };
   }
 }
