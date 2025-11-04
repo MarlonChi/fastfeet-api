@@ -22,11 +22,11 @@ enum DeliveryStatus {
 }
 
 model User {
-  id          String @id @default(uuid())
-  name        String
-  document_id String @unique
-  password    String
-  role        Role
+  id         String @id @default(uuid())
+  name       String
+  documentId String @unique
+  password   String
+  role       Role
 
   deliveries Delivery[] @relation("DeliveryDeliveryman")
 
@@ -34,12 +34,12 @@ model User {
 }
 
 model Recipient {
-  id          String  @id @default(uuid())
-  name        String
-  document_id String  @unique
-  address     String
-  phone       String?
-  email       String @unique
+  id         String  @id @default(uuid())
+  name       String
+  documentId String  @unique
+  address    String
+  phone      String?
+  email      String  @unique
 
   deliveries Delivery[]
 

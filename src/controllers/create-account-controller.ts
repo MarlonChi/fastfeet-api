@@ -13,7 +13,7 @@ import z from 'zod';
 
 const createAccountBodySchema = z.object({
   name: z.string(),
-  document_id: z.string(),
+  documentId: z.string(),
   password: z.string().min(6),
   role: z.enum(['ADMIN', 'DELIVERYMAN']).default('DELIVERYMAN'),
 });
@@ -28,11 +28,11 @@ export class CreateAccountController {
   @HttpCode(201)
   @UsePipes(new ZodValidationPipe(createAccountBodySchema))
   async handle(@Body() body: CreateAccountBodySchema) {
-    const { name, document_id, role, password } = body;
+    const { name, documentId, role, password } = body;
 
     const userWithSameDocumentId = await this.prisma.user.findUnique({
       where: {
-        document_id,
+        documentId,
       },
     });
 
@@ -45,7 +45,7 @@ export class CreateAccountController {
     const user = await this.prisma.user.create({
       data: {
         name,
-        document_id,
+        documentId,
         password: hashedPassword,
         role: role ?? 'DELIVERYMAN',
       },
