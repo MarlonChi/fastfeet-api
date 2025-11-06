@@ -8,9 +8,9 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '@/prisma/prisma.service';
 import z from 'zod';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '@/auth/jwt-auth.guard';
 import { Prisma } from '@prisma/client';
 
 const updateAccountBodySchema = z.object({
@@ -43,8 +43,8 @@ export class UpdateRecipientController {
 
     const data: Prisma.UserUpdateInput = {
       ...(body.name !== undefined && { name: body.name }),
-      ...(body.documentId !== undefined && { document_id: body.documentId }),
-      ...(body.address !== undefined && { document_id: body.address }),
+      ...(body.documentId !== undefined && { documentId: body.documentId }),
+      ...(body.address !== undefined && { address: body.address }),
       ...(body.phone !== undefined && { phone: body.phone }),
       ...(body.email !== undefined && { email: body.email }),
     };

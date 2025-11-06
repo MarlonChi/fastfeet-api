@@ -22,6 +22,7 @@ import { DeleteDeliveryController } from './controllers/delete-delivery.controll
 import { NotificationService } from './services/notification.service';
 import { ListDeliveryManItemsController } from './controllers/list-deliveryman-items.controller';
 import { ListRecipientItemsController } from './controllers/list-recipient-items.controller';
+import { ListDeliveryManController } from './controllers/list-deliveryman.controller';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { ListRecipientItemsController } from './controllers/list-recipient-items
     DeleteDeliveryController,
     ListDeliveryManItemsController,
     ListRecipientItemsController,
+    ListDeliveryManController,
   ],
   providers: [AppService, PrismaService, NotificationService],
 })

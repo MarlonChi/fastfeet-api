@@ -9,8 +9,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Delivery, Recipient, User } from '@prisma/client';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { JwtAuthGuard } from '@/auth/jwt-auth.guard';
+import { PrismaService } from '@/prisma/prisma.service';
 
 @Controller('/deliveries')
 @UseGuards(JwtAuthGuard)

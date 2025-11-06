@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { hash } from 'bcryptjs';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { JwtAuthGuard } from '@/auth/jwt-auth.guard';
+import { PrismaService } from '@/prisma/prisma.service';
 import z from 'zod';
 
 const updateAccountBodySchema = z.object({
@@ -43,7 +43,7 @@ export class UpdateAccountController {
 
     const data: Prisma.UserUpdateInput = {
       ...(body.name !== undefined && { name: body.name }),
-      ...(body.documentId !== undefined && { document_id: body.documentId }),
+      ...(body.documentId !== undefined && { documentId: body.documentId }),
       ...(body.role !== undefined && { role: body.role }),
       ...(body.password !== undefined && {
         password: await hash(body.password, 8),

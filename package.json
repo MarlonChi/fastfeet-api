@@ -13,11 +13,12 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:cov": "vitest run --coverage",
+    "test:debug": "vitest --inspect-brk --inspect --logHeapUsage --threads=false",
+    "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
+    "test:e2e:watch": "vitest --config ./vitest.config.e2e.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -33,6 +34,8 @@
     "@typescript-eslint/parser": "^8.46.2",
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^4.0.0",
     "nodemailer": "^7.0.10",
@@ -42,7 +45,9 @@
     "prisma": "^6.18.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
+    "streamifier": "^0.1.1",
     "swagger-ui-express": "^5.0.1",
+    "unplugin-swc": "^1.5.8",
     "zod": "^4.1.12",
     "zod-validation-error": "^4.0.2"
   },
@@ -59,7 +64,8 @@
     "@types/node": "^22.10.7",
     "@types/passport-jwt": "^4.0.1",
     "@types/passport-local": "^1.0.38",
-    "@types/supertest": "^6.0.2",
+    "@types/streamifier": "^0.1.2",
+    "@types/supertest": "^6.0.3",
     "eslint": "^9.38.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",
@@ -73,7 +79,9 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.20.0"
+    "typescript-eslint": "^8.20.0",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^4.0.7"
   },
   "jest": {
     "moduleFileExtensions": [

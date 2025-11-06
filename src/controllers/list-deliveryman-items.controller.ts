@@ -7,8 +7,8 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { JwtAuthGuard } from '@/auth/jwt-auth.guard';
+import { PrismaService } from '@/prisma/prisma.service';
 
 @Controller('/deliveries/items')
 @UseGuards(JwtAuthGuard)
@@ -24,14 +24,17 @@ export class ListDeliveryManItemsController {
       throw new ForbiddenException('Access denied');
     }
 
-    const listDeliverys = await this.prisma.delivery.findMany({
+    const listDeliveries = await this.prisma.delivery.findMany({
       where: {
-        deliverymanId: user.id,
+        deliverymanId: id,
+      },
+      orderBy: {
+        createdAt: 'desc',
       },
     });
 
     return {
-      listDeliverys,
+      listDeliveries,
     };
   }
 }
